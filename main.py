@@ -12,8 +12,9 @@ img = Image.open("assets/play.png")
 img = img.resize((50, 50))  
 img_tk = ImageTk.PhotoImage(img)
 
-boton_play = Button(ventana, image=img_tk, )
-boton_play.pack()
+boton_play = Button(ventana, image=img_tk, bg="white", activebackground= "white", borderwidth= 0, highlightthickness= 0 )
+boton_play.place(x=670, y=500)
+
 
 
 ventana.mainloop()
