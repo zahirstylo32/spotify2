@@ -11,7 +11,7 @@ ventana.configure(bg="#0077b6")
 def imagenes(type):
     nombre = f"assets/{type}.png"
     img = Image.open(nombre)
-    img = img.resize((50, 50))  
+    img = img.resize((40, 40))  
     img_tk = ImageTk.PhotoImage(img)
     return img_tk
 
