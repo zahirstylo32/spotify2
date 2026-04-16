@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 from tkinter import *
-from PIL import Image, ImageTk
 from interfaz import boton_play, boton_adelantar, boton_atrasar
 
 ventana = tk.Tk()

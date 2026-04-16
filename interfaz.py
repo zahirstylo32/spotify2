@@ -1,3 +1,4 @@
+
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
@@ -48,4 +49,4 @@ boton_atrasar = tk.Button(
     borderwidth=0,
     highlightthickness=0)
 
-boton_atrasar.place(x=570
+boton_atrasar.place(x=570)
