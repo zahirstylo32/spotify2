@@ -1,52 +1,38 @@
-
 import tkinter as tk
-from tkinter import ttk
-from tkinter import *
-from PIL import Image, ImageTk 
-from main import ventana
+from PIL import Image, ImageTk
 
-def ventanas_en_pantalla(ventana):
-    label = ttk.Label(ventana, text="Hola Mundo", font=("Arial", 12))
-    label.pack(pady=20)
+# ── Image loader ──────────────────────────────────────────────────────────────
+def cargar_imagen(tipo, size=(40, 40)):
+    img = Image.open(f"assets/{tipo}.png")
+    img = img.resize(size)
+    return ImageTk.PhotoImage(img)
 
-def imagenes(type):
-    nombre = f"assets/{type}.png"
-    img = Image.open(nombre)
-    img = img.resize((40, 40))  
-    img_tk = ImageTk.PhotoImage(img)
-    return img_tk
+# ── Button factory ────────────────────────────────────────────────────────────
+def crear_botones(ventana):
+    """Crea y retorna los botones de reproducción. Recibe la ventana como parámetro."""
 
-img_play = imagenes("play")
-img_pause = imagenes("pause")
-img_atrasar = imagenes("atrasar")
-img_adelantar = imagenes("adelantar")
+    # Load images (kept alive as attributes to prevent garbage collection)
+    imgs = {
+        "play":      cargar_imagen("play"),
+        "pause":     cargar_imagen("pause"),
+        "atrasar":   cargar_imagen("atrasar"),
+        "adelantar": cargar_imagen("adelantar"),
+    }
 
-boton_play = tk.Button(
-    ventana,
-    image=img_play,
-    bg="#0077b6",
-    activebackground="#0077b6",
-    borderwidth=0,
-    highlightthickness=0)
+    stylo_boton = dict(
+        bg="#0077b6",
+        activebackground="#0077b6",
+        borderwidth=0,
+        highlightthickness=0,
+    )
 
-boton_play.place(x=670, y=500)
+    boton_atrasar   = tk.Button(ventana, image=imgs["atrasar"],   **stylo_boton)
+    boton_play      = tk.Button(ventana, image=imgs["play"],      **stylo_boton)
+    boton_adelantar = tk.Button(ventana, image=imgs["adelantar"], **stylo_boton)
 
-boton_adelantar = tk.Button(
-    ventana,
-    image=img_adelantar,
-    bg="#0077b6",
-    activebackground="#0077b6",
-    borderwidth=0,
-    highlightthickness=0)
+    # Prevent garbage collection of PhotoImage objects
+    for btn, key in zip([boton_atrasar, boton_play, boton_adelantar],
+                        ["atrasar", "play", "adelantar"]):
+        btn.image = imgs[key]
 
-boton_adelantar.place(x=770, y=500)
-
-boton_atrasar = tk.Button(
-    ventana,
-    image=img_atrasar,
-    bg="#0077b6",
-    activebackground="#0077b6",
-    borderwidth=0,
-    highlightthickness=0)
-
-boton_atrasar.place(x=570)
+    return boton_play, boton_adelantar, boton_atrasar, imgs
