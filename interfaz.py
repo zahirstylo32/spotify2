@@ -20,12 +20,12 @@ from player import Player
 from playqueue import Queue, LOOP_NONE, LOOP_ONE
 
 # ── Paleta ────────────────────────────────────────────────────────────────────
-BG       = "#0d0d0d"
-SIDEBAR  = "#111122"
-CARD     = "#1a1a2e"
+BG       = "#045a74"
+SIDEBAR  = "#13133B"
+CARD     = "#000035"
 ACCENT   = "#1e90ff"
 ACCENT2  = "#0055cc"
-TEXT     = "#e8e8f0"
+TEXT     = "#c2fdff"
 SUBTEXT  = "#7070a0"
 HOVER    = "#22223a"
 SEL      = "#1e3a6e"
